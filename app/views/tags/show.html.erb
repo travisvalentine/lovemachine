@@ -1,0 +1,29 @@
+<%= content_for(:header) do %>
+  <%= hashtag_meta(@tag.name) %>
+  <%= javascript_include_tag "instagram-scroll" %>
+<% end %>
+
+<h1><%= @tag.name %></h1>
+<% if current_user %>
+  <p><%= love_or_unlove_button(@tag) %></p>
+<% else %>
+  <p><%= link_to "Sign in to love", signin_path %></p>
+<% end %>
+
+<ul class="nav nav-tabs">
+  <li class="active", id='instagrams'><a href="#">Instagrams</a></li>
+  <li><a href="#", id='tweets'>Tweets</a></li>
+  <li><a href="#", id='tumbls'>Tumbls</a></li>
+</ul>
+
+<div id='instas'></div>
+
+<script type="text/javascript">
+  $('#instagrams').tab('show')
+  $(function(){
+    $("li#instagrams").on("click", function(){
+
+      return LoadResults();
+    });
+  })
+</script>
