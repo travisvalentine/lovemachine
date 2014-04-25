@@ -9,6 +9,7 @@ gem 'turbolinks', '~> 2.1.0'
 gem 'jbuilder', '~> 1.5.3'
 gem 'bcrypt'
 gem 'twitter'
+gem 'tumblr_client'
 
 group :doc do
   gem 'sdoc', require: false
