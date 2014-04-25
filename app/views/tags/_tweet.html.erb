@@ -1,1 +1,9 @@
-<li><%= tweet[:text] %> ~<%= tweet[:user] %></li>
+<div class="panel panel-default">
+  <span>
+    <img class="img-circle" src=<%= tweet[:user_pic] %> height="100" width="100" align="right">
+    <h2 class='panel-body text-left'>
+      <a href=<%= tweet[:url] %> style='display:inline'><%= tweet[:text] %></a>
+    </h2>
+    <h4>~ <%= tweet[:user] %></h4>
+  </span>
+</div>

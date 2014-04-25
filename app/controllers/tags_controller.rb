@@ -4,11 +4,13 @@ class TagsController < ApplicationController
     @twitter = TWITTER_CLIENT.search("##{@tag.name} -rt", ).collect do |tweet|
       {
         text: tweet.text,
-        user: tweet.user.screen_name
+        url:  tweet.url.to_s,
+        user: tweet.user.screen_name,
+        user_pic: tweet.user.profile_image_url
       }
     end
-    tumblr_client = Tumblr::Client.new
-    @tumbler = tumblr_client.tagged("#{@tag.name}").select{ |p| p['type'] == 'photo' }
+    # tumblr_client = Tumblr::Client.new
+    # @tumbler = tumblr_client.tagged("#{@tag.name}").select{ |p| p['type'] == 'photo' }
   end
 
   def index

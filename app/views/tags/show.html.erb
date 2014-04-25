@@ -16,7 +16,6 @@
   </li>
   <li>
     <a href="#twitterpane" id='tweets' data-toggle="tab">Tweets</a>
-
   </li>
   <li>
     <a href="#tumblrpane" id='tumbls' data-toggle="tab">Tumbls</a>
@@ -25,21 +24,14 @@
 
 <div class="tab-content">
   <div class="tab-pane fade in active" id="instapane">
-    <div id="instas">
-      <h2>Instagram</h2>
-    </div>
+    <div id="instas"> </div>
   </div>
   <div class="tab-pane fade in" id="twitterpane">
-    <h2>Twitter</h2>
-    <ul>
-      <% @twitter.each do |twitter| %>
-        <%= render partial: 'tweet', locals: {tweet: twitter} %>
-      <% end %>
-    </ul>
+    <% @twitter.each do |twitter| %>
+      <%= render partial: 'tweet', locals: {tweet: twitter} %>
+    <% end %>
   </div>
-  <div class="tab-pane fade in" id="tumblrpane">
-    <h2>Tumblr</h2>
-  </div>
+  <div class="tab-pane fade in" id="tumblrpane"> </div>
 </div>
 
 <script type="text/javascript">
