@@ -3,10 +3,10 @@ class Admin::UsersController < Admin::BaseController
     :edit,
     :update
   ]
-  
-  def edit    
+
+  def edit
   end
-  
+
   def update
     new_params = user_params.dup
     new_params[:username] = new_params[:username].strip
@@ -18,14 +18,13 @@ class Admin::UsersController < Admin::BaseController
       render :edit
     end
   end
-  
-  
-  private 
-  
+
+  private
+
   def set_user
     @user = User.friendly.find(current_user.id)
   end
-  
+
   def user_params
     params.require(:user).permit(
       :username,
@@ -34,5 +33,5 @@ class Admin::UsersController < Admin::BaseController
       :password_confirmation
     )
   end
-  
+
 end

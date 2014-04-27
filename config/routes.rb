@@ -9,9 +9,12 @@ Lovemachine::Application.routes.draw do
     resources :users
   end
 
+  resources :users
   resources :tags, only: [:show, :index, :create]
   resources :user_tags, only: [:create, :destroy]
   get '', to: 'tags#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   root "tags#index"
+
+  resources :tweets, only: [:index]
 
 end
