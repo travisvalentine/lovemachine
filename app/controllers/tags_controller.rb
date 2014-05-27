@@ -1,8 +1,6 @@
 class TagsController < ApplicationController
   def show
     @tag = Tag.find_by(name: request.subdomain)
-    # tumblr_client = Tumblr::Client.new
-    # @tumbler = tumblr_client.tagged("#{@tag.name}").select{ |p| p['type'] == 'photo' }
   end
 
   def index

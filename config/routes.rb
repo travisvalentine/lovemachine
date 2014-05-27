@@ -15,6 +15,7 @@ Lovemachine::Application.routes.draw do
   get '', to: 'tags#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   root "tags#index"
 
+  resources :tumblr_photos, only: [:index]
   resources :tweets, only: [:index]
 
 end
