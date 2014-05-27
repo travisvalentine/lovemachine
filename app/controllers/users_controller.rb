@@ -9,8 +9,9 @@ class UsersController < ApplicationController
       redirect_to signin_path
     else
       if @user = User.create(user_params)
-        flash[:notice] = "We've created your account, now sign in as #{@user.username}"
-        redirect_to signin_path
+        session[:user_id] = @user.id
+        flash[:notice] = "Welcome, #{@user.username}"
+        redirect_to root_path
       else
         redirect_to back
       end
