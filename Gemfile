@@ -9,7 +9,7 @@ gem 'turbolinks', '~> 2.1.0'
 gem 'jbuilder', '~> 1.5.3'
 gem 'bcrypt'
 gem 'twitter'
-gem 'tumblr_client'
+gem 'tumblr_client', git: 'https://github.com/tkiefhaber/tumblr_client.git', branch: 'master'
 
 group :doc do
   gem 'sdoc', require: false
