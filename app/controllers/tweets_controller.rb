@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
+
   def index
-    @tweets = TWITTER_CLIENT.search("##{params[:tag]} -rt", ).collect do |tweet|
+    @tweets = TWITTER_CLIENT.search("##{params[:tag]} -rt").take(50).collect do |tweet|
       {
         'text'     => tweet.text,
         'url'      => tweet.url.to_s,
@@ -8,9 +9,8 @@ class TweetsController < ApplicationController
         'user_pic' => tweet.user.profile_image_url
       }
     end
-    puts @tweets.to_json
-    respond_to do |format|
-      format.json {}
-    end
+
+    render json: @tweets
   end
+
 end

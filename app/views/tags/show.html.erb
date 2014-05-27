@@ -15,7 +15,7 @@
     <a href="#instapane" id="instagrams" data-toggle="tab">Instagrams</a>
   </li>
   <li>
-    <a href="#twitterpane" id='tweets' data-toggle="tab">Tweets</a>
+    <a href="#twitterpane" id='tweets' data-toggle="tab" data-url="<%= tweets_path(tag: @tag.name) %>">Tweets</a>
   </li>
   <li>
     <a href="#tumblrpane" id='tumbls' data-toggle="tab">Tumbls</a>
@@ -28,8 +28,7 @@
   </div>
   <div class="tab-pane fade in" id="twitterpane">
     <div class="panel panel-default">
-      <div id="individual_tweets">
-      </div>
+      <div id="individual_tweets"></div>
     </div>
   </div>
   <div class="tab-pane fade in" id="tumblrpane"> </div>
@@ -41,17 +40,21 @@
   });
 
   $('#tweets').click(function(){
-    var tweet_url = "/tweets?tag=<%= @tag.name %>"
-    var tweet_getter = $.ajax({type: 'GET', url: tweet_url, dataType: "JSON", contentType: "application/x-www-form-urlencoded; charset=iso-8859-1"})
-    tweet_getter.always(function(data){
-      items = []
-      console.log(data.responseText);
-      $.each(data.responseText, function(text) {
-        items.push( "<li>" + text + "</li>" );
+    var tweet_url = $("a#tweets").data("url");
+    $.get(tweet_url, function(data){
+      $.each(data, function(index, tweet){
+        $("#individual_tweets").append(
+          "<div class='panel panel-default'> \
+            <span> \
+              <img class='img-circle' src='" + tweet.user_pic.scheme + "://" + tweet.user_pic.host + tweet.user_pic.path + "' height='100' width='100' align='right'> \
+              <h2 class='panel-body text-left'> \
+                <a href='" + tweet.url + "' style='display:inline'>" + tweet.text + "</a> \
+              </h2> \
+              <h4>~ " + tweet.user + "</h4> \
+            </span> \
+          </div>"
+        );
       });
-      $( "<ul/>",
-        { "class": "my-new-list", html: items.join( "" )}
-      ).appendTo( $('#individual_tweets') );
     });
   });
 </script>
